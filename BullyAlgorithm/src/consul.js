@@ -2,65 +2,77 @@ const Consul = require('consul');
 
 class ConsulConfig {
     constructor(serviceName) {
-        console.log("Start consul");
-        //Initialize consumer
+        console.log("Starting the consul");
         this.consul = new Consul({
-            name:"Node 01",
+            name: "Node01",
             host: '127.0.0.1',
             port: 8500,
             promisify: true,
         });
-    // const id = `${Address}-${hostname}-${serviceIdentity}-${port}`;
 
-        //Service registration and health check configuration in service registry
         this.consul.agent.service.register({
             name: serviceName,
-            Address: '127.0.0.1', // Note:127.0.0.1 is the localhost
+            address: '127.0.0.1',
             port: 3000,
             check: {
-                name:serviceName,
-                http: 'http://${Address}:${port}/health',
+                name: serviceName,
+                http: `http://127.0.0.1:3000/health`,
                 interval: '10s',
                 timeout: '5s',
             }
-        }), function (err, result) {
+        }, (err, result) => {
             if (err) {
                 console.error(err);
                 throw err;
             }
 
-            Console.log(serviceName + "registered successfully!");
-        }
+            console.log(`${serviceName} registered successfully!`);
+        });
     }
 
     async getConfig(key) {
-        const result = await this.consul.kv.get(key);
+        try {
+            const result = await this.consul.kv.get(key);
 
-        if (!result) {
-            return promise.reject(Key + 'does not exist');
+            if (!result) {
+                return Promise.reject(`${key} does not exist`);
+            }
+
+            return JSON.parse(result.Value);
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
-
-        return JSON.parse(result.Value);
     }
 
-    //Read user configuration simple package
+    //Read user configuration
     async getUserConfig(key) {
-        const result = await this.getConfig('develop/user');
+        try {
+            const result = await this.getConfig('develop/user');
 
-        if (!key) {
-            return result;
+            if (!key) {
+                return result;
+            }
+
+            return result[key];
+        } catch (error) {
+            console.error(error);
+            throw error;
         }
-
-        return result[key];
     }
 
-    //Update user configuration simple package
+    //Update user configuration
     async setUserConfig(key, val) {
-        const user = await this.getConfig('develop/user');
+        try {
+            const user = await this.getConfig('develop/user');
 
-        user[key] = val;
+            user[key] = val;
 
-        return this.consul.kv.set('develop/user', JSON.stringify(user))
+            return this.consul.kv.set('develop/user', JSON.stringify(user));
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
     }
 }
 

@@ -9,7 +9,6 @@ const consul = new ConsulConfig(`200-${port}`, port);
 http.createServer( (req, res) => {
 
     const {url, method} = req;
-    //Test health check
     if (url === '/health') {
         res.end('OK!');
         

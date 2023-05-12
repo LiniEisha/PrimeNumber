@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shashperera/PrimeNO.git"
+    "url": "git+https://github.com/LiniEisha/PrimeNumber"
   },
-  "author": "shashi",
+  "author": "Linisha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shashperera/PrimeNO/issues"
+    "url": "https://github.com/LiniEisha/PrimeNumber/issues"
   },
-  "homepage": "https://github.com/shashperera/PrimeNO#readme",
+  "homepage": "https://github.com/LiniEisha/PrimeNumber#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "consul": "^0.40.0",

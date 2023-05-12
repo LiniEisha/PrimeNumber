@@ -4,7 +4,7 @@ class ConsulConfig {
     constructor() {
         const serviceName = 'consul-serviceRegistry';
 
-        //Initialize consumer
+        //Initialization
         this.consul = new Consul({
             host: '192.168.6.128',
             port: 8500,
@@ -14,10 +14,10 @@ class ConsulConfig {
         //Service registration and health check configuration
         this.consul.agent.service.register({
             name: serviceName,
-            Address: '192.168.20.193', // Note: 192.168.20.193 is my local intranet IP, which can be viewed through ifconfig
+            Address: '192.168.8.101',
             port: 3000,
             check: {
-                http: 'http://192.168.20.193:3000/health',
+                http: 'http://192.168.8.101:3000/health',
                 interval: '10s',
                 timeout: '5s',
             }
@@ -41,7 +41,7 @@ class ConsulConfig {
         return JSON.parse(result.Value);
     }
 
-    //Read user configuration simple package
+    //Read user configuration
     async getUserConfig(key) {
         const result = await this.getConfig('develop/user');
 
@@ -52,7 +52,7 @@ class ConsulConfig {
         return result[key];
     }
 
-    //Update user configuration simple package
+    //Update user configuratio
     async setUserConfig(key, val) {
         const user = await this.getConfig('develop/user');
 

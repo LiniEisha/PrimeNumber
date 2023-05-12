@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shashperera/PrimeNO"
+    "url": "https://github.com/LiniEisha/PrimeNumber"
   },
-  "author": "Shashi Perera",
+  "author": "Linisha",
   "license": "",
   "bugs": {
-    "url": "https://github.com/shashperera/PrimeNO/issues"
+    "url": "https://github.com/LiniEisha/PrimeNumber/issues"
   },
-  "homepage": "https://github.com/shashperera/PrimeNO/tree/master/BullyAlgorithm",
+  "homepage": "https://github.com/LiniEisha/PrimeNumber/tree/main/BullyAlgorithm",
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.4",

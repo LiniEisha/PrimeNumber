@@ -1,8 +1,4 @@
-// import requests
-// import random
-
-
-function get_acceptors_from_service_registry() {
+function getAcceptorsFromServiceRegistry() {
     acceptor_array = {}
     response = requests.get('http://127.0.0.1:8500/dc1/services')
     nodes = response.json()

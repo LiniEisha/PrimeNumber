@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const httpProx = require('http-proxy');
-const apiProx = httpProx.createProxyServer(); //catch all node APIs and direct traffic to apiProx
+const apiProx = httpProx.createProxyServer();
 
 const NODE = process.env.NODE;
 const Logger = require('./lib/really-cool-logger');

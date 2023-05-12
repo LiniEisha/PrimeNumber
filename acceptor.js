@@ -1,9 +1,6 @@
 const Recorder = require('./recorder')
 const Monotonic = require('./monotonic')
 
-// import requests
-
-
 function getLearnerServiceregistry() {
     learner_array = {};
     response = requests.get('http://127.0.0.1:8500/dc1/services');
